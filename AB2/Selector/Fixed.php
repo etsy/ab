@@ -1,0 +1,27 @@
+<?php
+
+require_once "AB2/Selector.php";
+
+/**
+ * A variant selector that returns a fixed variant.
+ *
+ */
+class AB2_Selector_Fixed implements AB2_Selector {
+    private $_varName;
+
+    public function __construct($varName) {
+        $this->_varName = $varName;
+    }
+
+    /**
+     * @param mixed $subject
+     * @return string variant name
+     */
+    public function select($subject) {
+        return $this->_varName;
+    }
+
+    public function getVariantName() {
+        return $this->_varName;
+    }
+}
