@@ -12,7 +12,7 @@ class AB2_Selector_Sequence implements AB2_Selector {
     public function __construct($selectors) {
         $this->_selectors = !is_null($selectors) ? $selectors : array();
     }
-    
+
     public function select($subjectKey) {
         foreach ($this->_selectors as $s) {
             $v = $s->select($subjectKey);

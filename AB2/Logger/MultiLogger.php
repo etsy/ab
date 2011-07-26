@@ -1,7 +1,7 @@
 <?php
 /**
- * Logger that passes calls through to multiple loggers. This is a best-effort 
- * implementation: if a logger throws an exception during the log() call, 
+ * Logger that passes calls through to multiple loggers. This is a best-effort
+ * implementation: if a logger throws an exception during the log() call,
  * the multilogger will log the error and move on to the next logger, if any.
  *
  */
@@ -15,7 +15,7 @@ class AB2_Logger_MultiLogger implements AB2_Logger {
             throw new InvalidArgumentException('we need an array of loggers here');
         }
         if (is_null($sysLogger)) {
-            throw new InvalidArgumentException('we need a systen logger to report possible errors.'); 
+            throw new InvalidArgumentException('we need a systen logger to report possible errors.');
         }
         $this->_loggers = $loggers;
         $this->_sysLogger = $sysLogger;

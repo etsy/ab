@@ -49,7 +49,7 @@ class AB2_Variant {
 
     /**
      * Convenient method for retrieving an individual property.
-     * 
+     *
      * @param  $key
      * @param  $default
      * @return property value under $key if it exists (it could be null); or $default
