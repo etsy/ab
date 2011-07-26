@@ -6,6 +6,7 @@ class AB2_Selector_Weighted implements AB2_Selector {
     private $_weights;
     private $_sumWeights;
     private $_partitions;
+
     /**
      * @var AB2_Selector_Randomizer
      */
@@ -19,19 +20,26 @@ class AB2_Selector_Weighted implements AB2_Selector {
      */
     public function __construct($weights, $randomizer) {
         if (!is_array($weights)) {
-            throw new InvalidArgumentException("weights must be a numerical array");
+            throw new InvalidArgumentException(
+              'weights must be a numerical array'
+            );
         }
+
         if (is_null($randomizer)) {
-            throw new InvalidArgumentException('A non-null randomizer is required.');
+            throw new InvalidArgumentException(
+              'A non-null randomizer is required.'
+            );
         }
 
         // check the weights and build the partition array
-        $sum = 0;
+        $sum   = 0;
         $parts = array();
+
         foreach ($weights as $var => $w) {
             if (!(is_numeric($w) && $w >= 0)) {
                 throw new InvalidArgumentException("invalid weight: $w");
             }
+
             // ignore the 0-weighted variations
             if ($w > 0) {
                 $sum += floatval($w);
@@ -39,7 +47,7 @@ class AB2_Selector_Weighted implements AB2_Selector {
             }
         }
 
-        $this->_weights = $weights;
+        $this->_weights    = $weights;
         $this->_sumWeights = $sum;
         $this->_partitions = $parts;
         $this->_randomizer = $randomizer;
@@ -54,8 +62,10 @@ class AB2_Selector_Weighted implements AB2_Selector {
         if (!empty($this->_partitions)) {
             $r = $this->_randomizer->randomize($subjectID);
             $w = $r * $this->getSumWeights();
+
             return $this->findPartition($w);
         }
+
         return null;
     }
 
@@ -77,10 +87,13 @@ class AB2_Selector_Weighted implements AB2_Selector {
 
     public function __toString() {
         $strs = array();
+
         foreach ($this->_weights as $var => $w) {
             $strs[] = "$var=>$w";
         }
+
         $weights = join(", ", $strs);
+
         return "weighted selector: weights=[$weights]";
     }
 }

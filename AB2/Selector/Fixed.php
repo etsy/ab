@@ -1,7 +1,6 @@
 <?php
 /**
  * A variant selector that returns a fixed variant.
- *
  */
 class AB2_Selector_Fixed implements AB2_Selector {
     private $_varName;
@@ -11,7 +10,7 @@ class AB2_Selector_Fixed implements AB2_Selector {
     }
 
     /**
-     * @param mixed $subject
+     * @param  mixed  $subject
      * @return string variant name
      */
     public function select($subject) {

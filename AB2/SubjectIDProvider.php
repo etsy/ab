@@ -1,5 +1,4 @@
 <?php
-
 /**
  * A SubjectIDProvider is used by some selectors to obtain a subject ID
  * when one isn't passed to the selector explicitly. E.g., a provider

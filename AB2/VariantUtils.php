@@ -1,5 +1,4 @@
 <?php
-
 class AB2_VariantUtils {
     /**
      * Create an array of variants with names from a weight array and optionally,
@@ -12,16 +11,20 @@ class AB2_VariantUtils {
      */
     public static function buildVariants($weights, $props) {
         if (!is_array($weights)) {
-            throw new InvalidArgumentException('We need an associative array of weights here.');
+            throw new InvalidArgumentException(
+              'We need an associative array of weights here.'
+            );
         }
-        $props = is_null($props) ? array() : $props;
+
+        $props    = is_null($props) ? array() : $props;
         $variants = array();
+
         foreach (array_keys($weights) as $vk) {
             $variants[] = new AB2_Variant($vk, isset($props[$vk]) ? $props[$vk] : null);
         }
+
         return $variants;
     }
-
 
     /**
      * Set all variants to the same weight for ease of analysis. Create extra
@@ -46,20 +49,24 @@ class AB2_VariantUtils {
         if ($base) {
             // first make a copy
             $newWeights = array();
+
             foreach ($weights as $vk => $w) {
                 $newWeights[$vk] = $w;
             }
+
             // now split entries in the new copy as needed
             // iterate through the old array but modify the new one
             foreach ($weights as $vk => $w) {
                 if ($w > $base) {
                     $vk2 = self::newKey($newWeights, $vk);
+
                     if ($vk2) {
                         $newWeights[$vk] = $base;
                         $newWeights[$vk2] = $w - $base;
                     }
                 }
             }
+
             return $newWeights;
         }
 
@@ -78,13 +85,15 @@ class AB2_VariantUtils {
      */
     private static function newKey($a, $k) {
         $newk = $k;
+
         for ($i = 0; $i < 5; $i++) {
             $newk .= '_';
+
             if (!array_key_exists($newk, $a)) {
                 return $newk;
             }
         }
+
         return null;
     }
-
 }

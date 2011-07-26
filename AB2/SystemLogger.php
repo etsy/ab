@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This is for logging errors, etc. This is how the AB2 framework integrates
  * with the error handling facility of your app.

@@ -1,8 +1,6 @@
 <?php
 /**
  * Interface for classes that implement A/B logging.
- *
- *
  */
 interface AB2_Logger {
     /**
@@ -11,7 +9,7 @@ interface AB2_Logger {
      *
      * @param string $testKey
      * @param string $variantKey
-     * @param mixed $subjectKey
+     * @param mixed  $subjectKey
      */
     public function log($testKey, $variantKey, $subjectKey);
 }

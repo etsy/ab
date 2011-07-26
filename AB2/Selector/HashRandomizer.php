@@ -1,7 +1,6 @@
 <?php
 /**
  * This randomizer hashes a (subject ID, test key) pair.
- *
  */
 class AB2_Selector_HashRandomizer implements AB2_Selector_Randomizer {
     private $_algo = 'sha256';
@@ -28,6 +27,7 @@ class AB2_Selector_HashRandomizer implements AB2_Selector_Randomizer {
 
     private function hash1($subjectID) {
         $h = hash($this->_algo, "$this->_testKey-$subjectID");
+
         return $this->mapHex($h);
     }
 
@@ -35,16 +35,21 @@ class AB2_Selector_HashRandomizer implements AB2_Selector_Randomizer {
         $h = hash($this->_algo, "$this->_testKey-$subjectID");
         $h = hash($this->_algo, $h);
         $w = $this->mapHex($h);
+
         return $w;
     }
 
     private function hash3($subjectID) {
         if (is_null($this->_testKeyHash)) {
-            $this->_testKeyHash = substr(hash($this->_algo, $this->_testKey), 0, 24);
+            $this->_testKeyHash = substr(
+              hash($this->_algo, $this->_testKey), 0, 24
+            );
         }
+
         $h = hash($this->_algo, "$this->_testKeyHash-$subjectID");
         $h = hash($this->_algo, $h);
         $w = $this->mapHex($h);
+
         return $w;
     }
 
@@ -56,14 +61,17 @@ class AB2_Selector_HashRandomizer implements AB2_Selector_Randomizer {
      * @return float
      */
     private function mapHex($hex) {
-        $len = min(40, strlen($hex));
+        $len  = min(40, strlen($hex));
         $vMax = 1 << $len;
-        $v = 0;
+        $v    = 0;
+
         for ($i = 0; $i < $len; $i++) {
             $bit = hexdec($hex[$i]) < 8 ? 0 : 1;
             $v = ($v << 1) + $bit;
         }
+
         $w = $v / $vMax;
+
         return $w;
     }
 }

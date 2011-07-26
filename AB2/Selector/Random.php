@@ -1,6 +1,5 @@
 <?php
 class AB2_Selector_Random implements AB2_Selector_Randomizer {
-
     private $_randMax;
 
     public function __construct() {
@@ -9,6 +8,7 @@ class AB2_Selector_Random implements AB2_Selector_Randomizer {
 
     public function randomize($subjectID) {
         $w = mt_rand(0, mt_getrandmax() - 1) / mt_getrandmax();
+
         return $w;
     }
 }
