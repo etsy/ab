@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="ab" default="build">
- <target name="build" depends="prepare"/>
+ <target name="build" depends="phpunit"/>
 
  <target name="clean" description="Cleanup build artifacts">
  </target>
@@ -9,7 +9,7 @@
  <target name="prepare" depends="clean,phpab" description="Prepare for build">
  </target>
 
- <target name="phpab" description="Generate autoloader script">
+ <target name="phpab" description="Generate autoloader scripts">
   <exec executable="phpab">
    <arg value="--output" />
    <arg path="${basedir}/Etsy/AB2/autoload.php" />
@@ -17,6 +17,18 @@
    <arg path="${basedir}/build/src_autoload.php.in" />
    <arg path="${basedir}/Etsy/AB2" />
   </exec>
+
+  <exec executable="phpab">
+   <arg value="--output" />
+   <arg path="${basedir}/tests/autoload.php" />
+   <arg value="--template" />
+   <arg path="${basedir}/build/tests_autoload.php.in" />
+   <arg path="${basedir}/tests" />
+  </exec>
+ </target>
+
+ <target name="phpunit" depends="prepare" description="Run unit tests with PHPUnit">
+  <exec executable="phpunit" failonerror="true"/>
  </target>
 
  <target name="package" depends="prepare" description="Create PEAR package">
