@@ -1,7 +1,4 @@
 <?php
-
-require_once "AB2/Selector/Randomizer.php";
-
 class AB2_Selector_Random implements AB2_Selector_Randomizer {
 
     private $_randMax;

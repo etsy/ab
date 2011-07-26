@@ -1,6 +1,4 @@
 <?php
-require_once 'AB2/Logger.php';
-
 /**
  * A logging filter that ignores duplicate calls.
  *

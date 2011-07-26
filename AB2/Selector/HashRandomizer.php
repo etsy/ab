@@ -1,8 +1,4 @@
 <?php
-
-require_once "AB2/Selector/Randomizer.php";
-
-
 /**
  * This randomizer hashes a (subject ID, test key) pair.
  *

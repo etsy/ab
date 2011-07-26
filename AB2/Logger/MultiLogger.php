@@ -1,6 +1,4 @@
 <?php
-require_once "AB2/Logger.php";
-
 /**
  * Logger that passes calls through to multiple loggers. This is a best-effort 
  * implementation: if a logger throws an exception during the log() call, 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ab" default="build">
+ <target name="build" depends="prepare"/>
+
+ <target name="clean" description="Cleanup build artifacts">
+ </target>
+
+ <target name="prepare" depends="clean,phpab" description="Prepare for build">
+ </target>
+
+ <target name="phpab" description="Generate autoloader script">
+  <exec executable="phpab">
+   <arg value="--output" />
+   <arg path="${basedir}/AB2/autoload.php" />
+   <arg value="--template" />
+   <arg path="${basedir}/build/src_autoload.php.in" />
+   <arg path="${basedir}/AB2" />
+  </exec>
+ </target>
+</project>

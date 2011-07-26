@@ -1,7 +1,4 @@
 <?php
-
-require_once "AB2/Selector.php";
-
 /**
  * A variant selector that returns a fixed variant.
  *
