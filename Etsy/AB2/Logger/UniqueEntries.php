@@ -2,7 +2,7 @@
 /**
  * A logging filter that ignores duplicate calls.
  */
-class AB2_Logger_UniqueEntries implements AB2_Logger {
+class Etsy_AB2_Logger_UniqueEntries implements Etsy_AB2_Logger {
     private $_log;
     private $_logger;
 

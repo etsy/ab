@@ -5,7 +5,7 @@
  * combinations of options, etc.
  *
  */
-class AB2_Variant {
+class Etsy_AB2_Variant {
     const VALID_NAMES = '/^[a-zA-Z0-9_-]+$/';
 
     private $_name;
@@ -65,6 +65,6 @@ class AB2_Variant {
     function __toString() {
         $props = print_r($this->_props, true);
 
-        return "AB2_Variant[$this->_name, $props]";
+        return "Etsy_AB2_Variant[$this->_name, $props]";
     }
 }

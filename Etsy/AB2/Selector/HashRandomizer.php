@@ -2,7 +2,7 @@
 /**
  * This randomizer hashes a (subject ID, test key) pair.
  */
-class AB2_Selector_HashRandomizer implements AB2_Selector_Randomizer {
+class Etsy_AB2_Selector_HashRandomizer implements Etsy_AB2_Selector_Randomizer {
     private $_algo = 'sha256';
     private $_testKey;
     private $_testKeyHash;

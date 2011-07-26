@@ -1,5 +1,5 @@
 <?php
-class AB2_Selector_Random implements AB2_Selector_Randomizer {
+class Etsy_AB2_Selector_Random implements Etsy_AB2_Selector_Randomizer {
     private $_randMax;
 
     public function __construct() {

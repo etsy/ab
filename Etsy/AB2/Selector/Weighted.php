@@ -2,20 +2,20 @@
 /**
  *
  */
-class AB2_Selector_Weighted implements AB2_Selector {
+class Etsy_AB2_Selector_Weighted implements Etsy_AB2_Selector {
     private $_weights;
     private $_sumWeights;
     private $_partitions;
 
     /**
-     * @var AB2_Selector_Randomizer
+     * @var Etsy_AB2_Selector_Randomizer
      */
     private $_randomizer;
 
     /**
      * @param string $testKey
      * @param array $weights an associative array of variation ID => weights
-     * @param AB2_Selector_Randomizer $randomizer
+     * @param Etsy_AB2_Selector_Randomizer $randomizer
      * @throws Exception_ArgumentException
      */
     public function __construct($weights, $randomizer) {

@@ -4,7 +4,7 @@
  * when one isn't passed to the selector explicitly. E.g., a provider
  * may read the ID from a cookie.
  */
-interface AB2_SubjectIDProvider {
+interface Etsy_AB2_SubjectIDProvider {
     /**
      * @abstract
      * @return string

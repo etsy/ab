@@ -1,5 +1,5 @@
 <?php
-interface AB2_Selector {
+interface Etsy_AB2_Selector {
     /**
      * selects a variant.
      *

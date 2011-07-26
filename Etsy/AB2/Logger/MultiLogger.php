@@ -4,7 +4,7 @@
  * implementation: if a logger throws an exception during the log() call,
  * the multilogger will log the error and move on to the next logger, if any.
  */
-class AB2_Logger_MultiLogger implements AB2_Logger {
+class Etsy_AB2_Logger_MultiLogger implements Etsy_AB2_Logger {
     private $_loggers;
     private $_sysLogger;
 
@@ -32,7 +32,7 @@ class AB2_Logger_MultiLogger implements AB2_Logger {
             }
 
             catch (Exception $err) {
-                $this->_sysLogger->error("AB2_Logger failed: $err");
+                $this->_sysLogger->error("Etsy_AB2_Logger failed: $err");
             }
         }
     }

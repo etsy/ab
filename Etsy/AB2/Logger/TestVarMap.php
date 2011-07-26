@@ -5,7 +5,7 @@
  * times with different subject IDs, the values of the last call will be returned
  * by getMap().
  */
-class AB2_Logger_TestVarMap implements AB2_Logger {
+class Etsy_AB2_Logger_TestVarMap implements Etsy_AB2_Logger {
     /** @var array test name -> variant name map */
     private $_testVarMap;
 

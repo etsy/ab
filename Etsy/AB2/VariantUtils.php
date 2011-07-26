@@ -1,5 +1,5 @@
 <?php
-class AB2_VariantUtils {
+class Etsy_AB2_VariantUtils {
     /**
      * Create an array of variants with names from a weight array and optionally,
      * properties from an k-v array.
@@ -20,7 +20,7 @@ class AB2_VariantUtils {
         $variants = array();
 
         foreach (array_keys($weights) as $vk) {
-            $variants[] = new AB2_Variant($vk, isset($props[$vk]) ? $props[$vk] : null);
+            $variants[] = new Etsy_AB2_Variant($vk, isset($props[$vk]) ? $props[$vk] : null);
         }
 
         return $variants;

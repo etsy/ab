@@ -12,10 +12,16 @@
  <target name="phpab" description="Generate autoloader script">
   <exec executable="phpab">
    <arg value="--output" />
-   <arg path="${basedir}/AB2/autoload.php" />
+   <arg path="${basedir}/Etsy/AB2/autoload.php" />
    <arg value="--template" />
    <arg path="${basedir}/build/src_autoload.php.in" />
-   <arg path="${basedir}/AB2" />
+   <arg path="${basedir}/Etsy/AB2" />
+  </exec>
+ </target>
+
+ <target name="package" depends="prepare" description="Create PEAR package">
+  <exec executable="pear">
+   <arg value="package" />
   </exec>
  </target>
 </project>

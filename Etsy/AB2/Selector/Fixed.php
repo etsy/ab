@@ -2,7 +2,7 @@
 /**
  * A variant selector that returns a fixed variant.
  */
-class AB2_Selector_Fixed implements AB2_Selector {
+class Etsy_AB2_Selector_Fixed implements Etsy_AB2_Selector {
     private $_varName;
 
     public function __construct($varName) {

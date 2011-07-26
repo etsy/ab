@@ -3,7 +3,7 @@
  * A compound selector that tries each selector from a list, and returns the
  * first non-null selection.
  */
-class AB2_Selector_Sequence implements AB2_Selector {
+class Etsy_AB2_Selector_Sequence implements Etsy_AB2_Selector {
     private $_selectors;
 
     public function __construct($selectors) {

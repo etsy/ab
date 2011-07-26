@@ -8,7 +8,7 @@
  * <li>a <li>logger</li> that logs each non-null selection</li>
  * </ol>
  */
-class AB2_Test {
+class Etsy_AB2_Test {
     const VALID_NAMES = '/^[a-zA-Z0-9._-]+$/';
 
     /** @var string */
@@ -17,25 +17,25 @@ class AB2_Test {
     /** @var array a LUT for variants by name */
     private $_variantsByName;
 
-    /** @var AB2_Selector */
+    /** @var Etsy_AB2_Selector */
     private $_selector;
 
-    /** @var AB2_SubjectIDProvider */
+    /** @var Etsy_AB2_SubjectIDProvider */
     private $_subjectIDProvider;
 
-    /** @var AB2_Logger */
+    /** @var Etsy_AB2_Logger */
     private $_logger;
 
-    /** @var AB2_EntryCondition */
+    /** @var Etsy_AB2_EntryCondition */
     private $_condition;
 
     /**
      * @param string $name
-     * @param array $variants an array of AB2_Variants
-     * @param AB2_Selector $selector
-     * @param AB2_SubjectIDProvider $subjectIDProvider
-     * @param AB2_Logger $logger
-     * @param AB2_EntryCondition $condition an optional entry condition. If it's
+     * @param array $variants an array of Etsy_AB2_Variants
+     * @param Etsy_AB2_Selector $selector
+     * @param Etsy_AB2_SubjectIDProvider $subjectIDProvider
+     * @param Etsy_AB2_Logger $logger
+     * @param Etsy_AB2_EntryCondition $condition an optional entry condition. If it's
      *        not specified, this tests will always be on.
      * @throws InvalidArgumentException for bad input
      */
@@ -77,7 +77,7 @@ class AB2_Test {
     }
 
     /**
-     * @return AB2_Selector
+     * @return Etsy_AB2_Selector
      */
     public final function getSelector() {
         return $this->_selector;
@@ -91,7 +91,7 @@ class AB2_Test {
      * Selects a variant for the given subject (typically a user).
      *
      * @param  $subjectID
-     * @return AB2_Variant a variant or null if no selection was made.
+     * @return Etsy_AB2_Variant a variant or null if no selection was made.
      */
     public function select($subjectID = null) {
         if ($this->_condition && !$this->_condition->isMet()) {
