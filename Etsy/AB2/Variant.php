@@ -1,12 +1,11 @@
 <?php
-
 /**
  * A test variant. Each variant consists of a unique name (within each test) and an optional
  * properties array. Properties are particularly helpful when different variants specify
  * combinations of options, etc.
  *
  */
-class AB2_Variant {
+class Etsy_AB2_Variant {
     const VALID_NAMES = '/^[a-zA-Z0-9_-]+$/';
 
     private $_name;
@@ -20,16 +19,20 @@ class AB2_Variant {
      */
     public function __construct($name, $props=null) {
         $name = strval($name);
+
         if (!preg_match(self::VALID_NAMES, $name)) {
-            throw new InvalidArgumentException("name must be a non-empty string consisting of alphanumeric characters, '-' and '_'.");
+            throw new InvalidArgumentException(
+              "name must be a non-empty string consisting of alphanumeric characters, '-' and '_'."
+            );
         }
 
         $props = !is_null($props) ? $props : array();
+
         if (!is_array($props)) {
-            throw new InvalidArgumentException("props must be an array.");
+            throw new InvalidArgumentException('props must be an array.');
         }
 
-        $this->_name = $name;
+        $this->_name  = $name;
         $this->_props = $props;
     }
 
@@ -49,7 +52,7 @@ class AB2_Variant {
 
     /**
      * Convenient method for retrieving an individual property.
-     * 
+     *
      * @param  $key
      * @param  $default
      * @return property value under $key if it exists (it could be null); or $default
@@ -61,6 +64,7 @@ class AB2_Variant {
 
     function __toString() {
         $props = print_r($this->_props, true);
-        return "AB2_Variant[$this->_name, $props]";
+
+        return "Etsy_AB2_Variant[$this->_name, $props]";
     }
 }

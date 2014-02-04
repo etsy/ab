@@ -1,10 +1,9 @@
 <?php
-
-interface AB2_Selector {
+interface Etsy_AB2_Selector {
     /**
      * selects a variant.
      *
-     * @param string $subjectID
+     * @param  string $subjectID
      * @return variant key (name)
      */
     public function select($subjectID);

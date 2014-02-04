@@ -1,22 +1,19 @@
 <?php
-require_once 'AB2/Logger.php';
-
 /**
  * A logging filter that ignores duplicate calls.
- *
  */
-class AB2_Logger_UniqueEntries implements AB2_Logger {
-
+class Etsy_AB2_Logger_UniqueEntries implements Etsy_AB2_Logger {
     private $_log;
     private $_logger;
 
     public function __construct($logger) {
-        $this->_log = array();
+        $this->_log    = array();
         $this->_logger = $logger;
     }
 
     public function log($testKey, $variantKey, $subjectKey) {
         $logParams = "$testKey:$variantKey:$subjectKey";
+
         if (!isset($this->_log[$logParams])) {
             $this->_logger->log($testKey, $variantKey, $subjectKey);
             $this->_log[$logParams] = true;

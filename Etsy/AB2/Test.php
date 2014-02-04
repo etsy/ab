@@ -1,5 +1,4 @@
 <?php
-
 /**
  * A test is defined by <ol>
  * <li>a unique name</li>
@@ -8,10 +7,8 @@
  * <li>an <i>ID provider</i> that supplies user/subject IDs when they're not given explicitly by the caller</li>
  * <li>a <li>logger</li> that logs each non-null selection</li>
  * </ol>
- *
  */
-class AB2_Test {
-
+class Etsy_AB2_Test {
     const VALID_NAMES = '/^[a-zA-Z0-9._-]+$/';
 
     /** @var string */
@@ -20,44 +17,46 @@ class AB2_Test {
     /** @var array a LUT for variants by name */
     private $_variantsByName;
 
-    /** @var AB2_Selector */
+    /** @var Etsy_AB2_Selector */
     private $_selector;
 
-    /** @var AB2_SubjectIDProvider */
+    /** @var Etsy_AB2_SubjectIDProvider */
     private $_subjectIDProvider;
 
-    /** @var AB2_Logger */
+    /** @var Etsy_AB2_Logger */
     private $_logger;
 
-    /** @var AB2_EntryCondition */
+    /** @var Etsy_AB2_EntryCondition */
     private $_condition;
 
     /**
      * @param string $name
-     * @param array $variants an array of AB2_Variants
-     * @param AB2_Selector $selector
-     * @param AB2_SubjectIDProvider $subjectIDProvider
-     * @param AB2_Logger $logger
-     * @param AB2_EntryCondition $condition an optional entry condition. If it's
+     * @param array $variants an array of Etsy_AB2_Variants
+     * @param Etsy_AB2_Selector $selector
+     * @param Etsy_AB2_SubjectIDProvider $subjectIDProvider
+     * @param Etsy_AB2_Logger $logger
+     * @param Etsy_AB2_EntryCondition $condition an optional entry condition. If it's
      *        not specified, this tests will always be on.
      * @throws InvalidArgumentException for bad input
      */
     public function __construct($name, $variants, $selector, $subjectIDProvider, $logger, $condition=null) {
         if (!is_string($name) || !preg_match(self::VALID_NAMES, $name)) {
-            throw new InvalidArgumentException("name must be a non-empty string consisting of alphanumeric charactesr, '-' and '_'.");
+            throw new InvalidArgumentException(
+              "name must be a non-empty string consisting of alphanumeric charactesr, '-' and '_'."
+            );
         }
 
         if (!is_array($variants)) {
             throw new InvalidArgumentException("variants must be an array.");
         }
 
-        $this->_name = $name;
-        $this->_selector = $selector;
+        $this->_name              = $name;
+        $this->_selector          = $selector;
         $this->_subjectIDProvider = $subjectIDProvider;
-        $this->_logger = $logger;
-        $this->_condition = $condition;
+        $this->_logger            = $logger;
+        $this->_condition         = $condition;
+        $this->_variantsByName    = array();
 
-        $this->_variantsByName = array();
         foreach ($variants as $v) {
             $this->_variantsByName[$v->getName()] = $v;
         }
@@ -78,7 +77,7 @@ class AB2_Test {
     }
 
     /**
-     * @return AB2_Selector
+     * @return Etsy_AB2_Selector
      */
     public final function getSelector() {
         return $this->_selector;
@@ -92,12 +91,13 @@ class AB2_Test {
      * Selects a variant for the given subject (typically a user).
      *
      * @param  $subjectID
-     * @return AB2_Variant a variant or null if no selection was made.
+     * @return Etsy_AB2_Variant a variant or null if no selection was made.
      */
     public function select($subjectID = null) {
         if ($this->_condition && !$this->_condition->isMet()) {
             return null;
         }
+
         if (is_null($subjectID) && !is_null($this->_subjectIDProvider)) {
             $subjectID = $this->_subjectIDProvider->getID();
         }
@@ -106,6 +106,7 @@ class AB2_Test {
 
         if (!is_null($varKey) && isset($this->_variantsByName[$varKey])) {
             $this->_logger->log($this->_name, $varKey, $subjectID);
+
             return $this->_variantsByName[$varKey];
         }
 
@@ -121,6 +122,7 @@ class AB2_Test {
      */
     public function selectName($subjectID = null) {
         $var = $this->select($subjectID);
+
         return $var ? $var->getName() : null;
     }
 
@@ -133,6 +135,7 @@ class AB2_Test {
      */
     public function selectProperties($subjectID = null) {
         $var = $this->select($subjectID);
+
         return $var ? $var->getProperties() : null;
     }
 }
